@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import {
   getProfileHanlder,
   loginUserHandler,
@@ -8,10 +8,10 @@ import { authenticateToken } from "../middleware/authenticateToken";
 import { validateSchema } from "../middleware/validateSchema";
 import { createUserSchema, loginUserSchema } from "../schemas/user.schema";
 
-const router = express.Router();
+const router: Router = express.Router();
 
+router.get("/profile", authenticateToken, getProfileHanlder);
 router.post("/register", validateSchema(createUserSchema), registerUserHandler);
 router.post("/login", validateSchema(loginUserSchema), loginUserHandler);
-router.get("/profile ", authenticateToken, getProfileHanlder);
 
 export default router;

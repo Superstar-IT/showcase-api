@@ -15,7 +15,7 @@ export const registerUserHandler = async (
     const duplicatedUser = await findUser({ email: email.toLowerCase() });
 
     if (duplicatedUser) {
-      return next(new AppError(400, "Email is already used"));
+      throw new AppError(400, "Email is already used");
     }
 
     const newUser = await createUser({
@@ -43,11 +43,11 @@ export const loginUserHandler = async (
     const user = await findUser({ email: email.toLowerCase() });
 
     if (!user) {
-      return next(new AppError(400, "Invalid email or password"));
+      return next(new AppError(404, "User not foud"));
     }
 
     if (!(await User.comparePasswords(password, user.password))) {
-      return next(new AppError(400, "Invalid email or password"));
+      return next(new AppError(400, "Wrong password"));
     }
 
     const { access_token } = await signTokens(user);
@@ -62,7 +62,7 @@ export const loginUserHandler = async (
 };
 
 export const getProfileHanlder = async (
-  _req: Request<{}, {}, LoginUserInput>,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {

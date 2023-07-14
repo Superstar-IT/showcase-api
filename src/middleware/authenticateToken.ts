@@ -16,9 +16,7 @@ export const authenticateToken = async (
       req.headers.authorization.startsWith("Bearer")
     ) {
       access_token = req.headers.authorization.split(" ")[1];
-    } else if (req.cookies.access_token) {
-      access_token = req.cookies.access_token;
-    }
+    } 
 
     if (!access_token) {
       return next(new AppError(401, "You are not logged in"));
