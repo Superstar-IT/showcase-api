@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
+    "start": "node build/src/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
     "build": "tsc -p .",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migrate:generate": "yarn build && yarn typeorm migration:generate ./src/migrations/added-user-entity -d ./src/utils/data-source.ts",
-    "migrate:run": "yarn build && yarn typeorm migration:run -d src/utils/data-source.ts",
+    "migrate:generate": "yarn typeorm migration:generate -d ./src/utils/data-source.ts",
+    "migrate:run": "yarn typeorm migration:run -d src/utils/data-source.ts",
     "test": "jest"
   },
   "dependencies": {

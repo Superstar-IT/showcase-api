@@ -21,44 +21,43 @@ You are tasked with creating a RESTful API server using Express.js and TypeScrip
     
 6.  Write unit tests for the API routes, middleware functions, and database layer using a testing framework of your choice (e.g., Jest).
     
+## Tech Stacks
 
-## Guidelines
+- TypeScript
+- PostgreSQL
+- JWT
+- [Express](https://expressjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [Jest](https://jestjs.io/docs/getting-started)
+- [Zod](https://zod.dev/)
+- [morgan](https://github.com/expressjs/morgan#readme)
+- [Axios](https://axios-http.com/docs/intro)
 
-*   Use TypeScript for the project.
-*   Use the Express.js framework to build the API server.
-*   Use JSON Web Tokens (JWT) for authentication.
-*   Use the axios library to make HTTP requests to the third-party API.
-*   Use a database of your choice for storing and retrieving user information.
-*   Implement proper error handling for invalid requests or failures.
-*   Ensure the API responses follow RESTful design principles and return appropriate HTTP status codes.
-*   Write clear and concise code with proper documentation and comments.
-*   Include a `README.md` file with instructions on how to set up and run the project, along with any additional information or notes.
+## Quick run
 
-## Evaluation Criteria
+```bash
+$ git clone https://github.com/Superstar-IT/showcase-api.git
+$ cd showcase-api
+$ cp example.env .env
+$ yarn install
 
-*   Correctness and functionality of the implemented features.
-*   Proper usage of TypeScript, including type definitions and interfaces.
-*   Proper usage of middleware for request logging and error handling.
-*   Integration with the third-party API and retrieval of user data.
-*   Proper implementation of the database layer for storing and retrieving user information.
-*   Unit tests for the API routes, middleware functions, and database layer.
-*   Code quality, organization, and documentation.
+# Run migration
+$ yarn migrate:run
 
-Please note that this is a general guideline for the assignment, and you can modify it according to your specific requirements or preferences. You can choose any database and ORM/ODM of your choice to implement the database layer.
+# development
+$ yarn dev
 
-----------------------
-## Docker Compose Instructions
-To simplify the setup of the database, you can use Docker Compose. Follow the steps below to start the database container using Docker Compose:
-
-1. Place the provided docker-compose.yml file in a directory (e.g., database).
-2. Open a terminal or command prompt and navigate to the directory containing the docker-compose.yml file.
-3. Run the following command to start the database container:
-
-```shell
-docker-compose up -d
+# production mode
+$ yarn build
+$ yarn start
 ```
-The -d flag runs the containers in the background (detached mode).
 
-Your PostgreSQL database container should now be up and running, exposing port 5432 on your localhost. You can connect to the database using your preferred PostgreSQL client or include the necessary configuration in your backend application to establish a connection.
+## Database utils
 
-Remember to adjust the database connection configuration in your Express.js backend to match the values you provided in the docker-compose.yml file.
+```bash
+# Generate migration
+$ yarn migrate:generate src/migrations/createNewTable
+
+# Run migration
+$ yarn migrate:run
+```
