@@ -51,6 +51,12 @@ $ yarn dev
 $ yarn build
 $ yarn start
 ```
+## Test
+
+```bash
+# unit tests
+$ yarn test
+```
 
 ## Database utils
 
